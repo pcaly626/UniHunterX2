@@ -7,7 +7,7 @@ class CreateEncounter extends Component {
 
     state = {
         createEncounterForm : {
-            "name": {
+            name : {
                 label:"Encounter Name",
                 placeHolder:"Example: Battle of Underbergstad",
                 value:"",
@@ -21,7 +21,7 @@ class CreateEncounter extends Component {
                     }
                 ]
             },
-            "player":{
+            player:{
                 label:"Choose a Player",
                 placeHolder:"Example: Rasgrim",
                 value:"",
@@ -51,7 +51,7 @@ class CreateEncounter extends Component {
                     },
                 ]
             },
-            "enemy":{
+            enemy:{
                 label:"Select an Enemy",
                 placeHolder:"Example: Goblins",
                 value:"",
@@ -73,7 +73,7 @@ class CreateEncounter extends Component {
                     }
                 ]
             },
-            "terrain":{
+            terrain:{
                 label:"Choose a terrain",
                 placeHolder:"Example: Swamp",
                 value:"",
