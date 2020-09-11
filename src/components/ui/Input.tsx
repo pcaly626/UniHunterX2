@@ -6,6 +6,7 @@ const inputElement ={
     value:"",
     class:"",
     type: "",
+    change: function(event: any) {},
     options: [
         {
             value:"",
@@ -15,13 +16,13 @@ const inputElement ={
 }
 type InputElement = typeof inputElement;
 
-const input = (props : InputElement ) =>{
+const input = (props : InputElement) =>{
     let inputElement;
     switch(props.type) {
-        case 'input': inputElement = (<input className={props.class} value={props.value} placeholder={props.placeHolder} />)
+        case 'input': inputElement = (<input className={props.class} value={props.value} placeholder={props.placeHolder} onChange={props.change}/>)
             break;
         case 'select':inputElement =
-        <select className={props.class} >
+        <select className={props.class} onChange={props.change}>
             {props.options.map( option => (
                 <option {...option}>
                     {option.value}
