@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import './CreateEncounter.css';
-import Input from './ui/Input';
+import Input from '../ui/Input';
 import { KeyType } from 'crypto';
 
 class CreateEncounter extends Component {
