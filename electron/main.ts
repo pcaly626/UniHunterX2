@@ -1,4 +1,5 @@
-import { app, BrowserWindow } from 'electron';
+import { app, BrowserWindow, ipcRenderer, ipcMain } from 'electron';
+
 import * as path from 'path';
 import * as url from 'url';
 
@@ -19,7 +20,7 @@ function createWindow() {
     else {
         mainWindow.loadURL(
             url.format({
-                pathname: path.join(__dirname, '../index.html'),
+                pathname: path.join(__dirname, '../public/index.html'),
                 protocol: 'file:',
                 slashes: true
             })
@@ -33,3 +34,9 @@ function createWindow() {
 
 app.on('ready', createWindow);
 app.allowRendererProcessReuse = true;
+
+
+ipcMain.on('create-encounter', (data : any ) =>{
+    console.log(data);
+    console.log("We're IN");
+})
