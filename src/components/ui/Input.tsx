@@ -1,22 +1,7 @@
-import React, {Fragment} from 'react';
+import React from 'react';
+import { EncounterElement } from './InputTypes';
 
-const inputElement ={
-    label:"",
-    placeHolder:"",
-    value:"",
-    class:"",
-    type: "",
-    change: function(event: any) {},
-    options: [
-        {
-            value:"",
-            class:"",
-        }
-    ]
-}
-type InputElement = typeof inputElement;
-
-const input = (props : InputElement) =>{
+const input = (props : EncounterElement) =>{
     let inputElement;
     switch(props.type) {
         case 'input': inputElement = (<input className={props.class} value={props.value} placeholder={props.placeHolder} onChange={props.change}/>)
