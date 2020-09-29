@@ -1,32 +1,13 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component, Fragment, ChangeEvent, Dispatch } from 'react';
+import { connect } from 'react-redux';
 import './CreateEncounter.css';
 import Input from '../ui/Input';
 import { createEncounter } from '../../actions/encounter';
+import { CreateEncounterState } from './EncounterTypes'; 
 
-interface IValues {
-    [key: string] : any;
-}
+class CreateEncounter extends Component<{}, CreateEncounterState>{
 
-export interface IFormState {
-    /* The field values */
-    values: IValues;
-  
-    /* Whether the form has been successfully submitted */
-    submitSuccess?: boolean;
-  }
-
-export  interface IFormProps {
-    /* The http path that the form will be posted to */
-    action: string;
-  }
-
-class CreateEncounter extends Component {
-    
-    state : any;
-
-    constructor(props: any) {
-        super(props);
-        this.state = {
+    state : CreateEncounterState = {
             createEncounterForm : {
                 name : {
                     label:"Encounter Name",
@@ -34,7 +15,7 @@ class CreateEncounter extends Component {
                     value:"",
                     class:"",
                     type: "input",
-                    change:  function(event: any) {},
+                    change:  (event: ChangeEvent) => {},
                     options: [
                         {
                             value:"",
@@ -48,7 +29,7 @@ class CreateEncounter extends Component {
                     value:"",
                     class:"",
                     type: "select",
-                    change:  function(event: any) {},
+                    change:  (event: ChangeEvent) => {},
                     options: [
                         {
                             value:"Choose Player",
@@ -78,7 +59,7 @@ class CreateEncounter extends Component {
                     value:"",
                     class:"",
                     type: "select",
-                    change:  function(event: any) {},
+                    change:  (event: ChangeEvent) => {},
                     options: [
                         {
                             value:"Choose Enemy",
@@ -100,7 +81,7 @@ class CreateEncounter extends Component {
                     value:"",
                     class:"",
                     type: "select",
-                    change:  function(event: any) {},
+                    change:  (event: ChangeEvent) =>{},
                     options: [
                         {
                             value:"Choose Terrain",
@@ -120,11 +101,11 @@ class CreateEncounter extends Component {
 
             },
         }
-    }
 
-    private createEncounterChange(element : string, event : any){
+
+    private createEncounterChange = (element : string, event : ChangeEvent) =>{
         
-        const updateForm : IFormState | any = {...this.state.createEncounterForm};
+        const updateForm : any = {...this.state.createEncounterForm};
         let updateElement : any;
         for(let key in updateForm){
             if(key === element) updateElement = updateForm[key];
@@ -135,14 +116,19 @@ class CreateEncounter extends Component {
         
     }
 
-    private createEncounterHandler(event : React.FormEvent<HTMLFormElement>){
+    private createEncounterHandler = (event : ChangeEvent) =>{
+        event.preventDefault();
         const encounterState : any = {...this.state.createEncounterForm};
         let formData : any = {};
-        console.log(encounterState);
-       // for( let item of encounterState){
-            //console.log(item);
-        //}
-        //createEncounter()
+
+        for( let item in encounterState){
+            formData[item] = encounterState[item].value;
+        }
+        console.log(formData);
+        this.props.createEncounter( formData );
+        console.log("Back in create encounter");
+        console.log(this.props.history.location);
+        this.props.history.push('/encounter');
     }
 
     render(){
@@ -169,7 +155,7 @@ class CreateEncounter extends Component {
         )
     }
 
-}
+};
 
 
-export default CreateEncounter;
+export default connect( null, {createEncounter})(CreateEncounter);
