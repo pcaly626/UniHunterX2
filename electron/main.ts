@@ -1,9 +1,11 @@
-import { app, BrowserWindow, ipcRenderer, ipcMain } from 'electron';
+import { app, BrowserWindow, ipcRenderer, ipcMain, IpcMainEvent } from 'electron';
 
 import * as path from 'path';
 import * as url from 'url';
+import fs from 'fs';
 
-let mainWindow : Electron.BrowserWindow | null;
+
+let mainWindow : BrowserWindow | null;
 
 function createWindow() {
     mainWindow = new BrowserWindow({
@@ -36,7 +38,16 @@ app.on('ready', createWindow);
 app.allowRendererProcessReuse = true;
 
 
-ipcMain.on('create-encounter', (data : any ) =>{
-    console.log(data);
-    console.log("We're IN");
+ipcMain.on('create-encounter', (event: IpcMainEvent, data : any ) =>{
+
+    fs.writeFile(
+        path.join(process.cwd(),'electron','encounters','encounter.json'), JSON.stringify(data), function(err){
+            if(err){
+                return console.error(err);
+            }
+            console.log('File Created')
+        }
+    )
+
+    mainWindow?.webContents.send('encounter-created', data);
 })
