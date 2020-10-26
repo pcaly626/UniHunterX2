@@ -1,10 +1,11 @@
+import React, {ChangeEvent} from 'react';
 
 export interface EncounterElement {
     label: string;
     placeHolder: string;
     value: string;
-    class: string;
+    css: string;
     type: string;
     change: (event: ChangeEvent) => void;
-    options: Array<{value:string,class:string}>;
+    options: Array<{value:string}>;
 }

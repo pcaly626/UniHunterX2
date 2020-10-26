@@ -1,9 +1,12 @@
-import React, { Component, Fragment, ChangeEvent, Dispatch } from 'react';
+import React, { Component, Fragment, ChangeEvent, FormEvent } from 'react';
 import { connect } from 'react-redux';
+import { Dispatch } from 'redux';
 import './CreateEncounter.css';
 import Input from '../ui/Input';
 import { createEncounter } from '../../actions/encounter';
 import { CreateEncounterState } from './EncounterTypes'; 
+import EncounterPage from './EncounterPage';
+import { Link } from 'react-router-dom'; 
 
 class CreateEncounter extends Component<{}, CreateEncounterState>{
 
@@ -13,13 +16,12 @@ class CreateEncounter extends Component<{}, CreateEncounterState>{
                     label:"Encounter Name",
                     placeHolder:"Example: Battle of Underbergstad",
                     value:"",
-                    class:"",
+                    css:"",
                     type: "input",
                     change:  (event: ChangeEvent) => {},
                     options: [
                         {
-                            value:"",
-                            class:"",
+                            value:""
                         }
                     ]
                 },
@@ -27,29 +29,24 @@ class CreateEncounter extends Component<{}, CreateEncounterState>{
                     label:"Choose a Player",
                     placeHolder:"Example: Rasgrim",
                     value:"",
-                    class:"",
+                    css:"",
                     type: "select",
                     change:  (event: ChangeEvent) => {},
                     options: [
                         {
-                            value:"Choose Player",
-                            class:"",
+                            value:"Choose Player"
                         },
                         {
-                            value:"Rasgrim",
-                            class:"",
+                            value:"Rasgrim"
                         },
                         {
-                            value:"Moss",
-                            class:"",
+                            value:"Moss"
                         },
                         {
-                            value:"Oskar",
-                            class:"",
+                            value:"Oskar"
                         },
                         {
-                            value:"Azrael",
-                            class:"",
+                            value:"Azrael"
                         },
                     ]
                 },
@@ -57,21 +54,18 @@ class CreateEncounter extends Component<{}, CreateEncounterState>{
                     label:"Select an Enemy",
                     placeHolder:"Example: Goblins",
                     value:"",
-                    class:"",
+                    css:"",
                     type: "select",
                     change:  (event: ChangeEvent) => {},
                     options: [
                         {
-                            value:"Choose Enemy",
-                            class:"",
+                            value:"Choose Enemy"
                         },
                         {
-                            value:"Goblins",
-                            class:"",
+                            value:"Goblins"
                         },
                         {
-                            value:"Orcs",
-                            class:"",
+                            value:"Orcs"
                         }
                     ]
                 },
@@ -79,56 +73,50 @@ class CreateEncounter extends Component<{}, CreateEncounterState>{
                     label:"Choose a terrain",
                     placeHolder:"Example: Swamp",
                     value:"",
-                    class:"",
+                    css:"",
                     type: "select",
                     change:  (event: ChangeEvent) =>{},
                     options: [
                         {
-                            value:"Choose Terrain",
-                            class:"",
+                            value:"Choose Terrain"
                         },
                         {
-                            value:"Swamp",
-                            class:"",
+                            value:"Swamp"
                         },
                         
                         {
-                            value:"Forest",
-                            class:"",
+                            value:"Forest"
                         }
                     ]
                 }
 
             },
+            sendToEncounter: {}
         }
-
-
+    
     private createEncounterChange = (element : string, event : ChangeEvent) =>{
-        
         const updateForm : any = {...this.state.createEncounterForm};
         let updateElement : any;
         for(let key in updateForm){
             if(key === element) updateElement = updateForm[key];
         }
-       updateElement.value = event.target.value;
-       updateForm[element] = updateElement;
-       this.setState({createEncounterForm: updateForm});
-        
+        updateElement.value = event.target.value;
+        updateForm[element] = updateElement;
+        this.setState({createEncounterForm: updateForm});
     }
 
     private createEncounterHandler = (event : ChangeEvent) =>{
         event.preventDefault();
+        const { dispatch, createEncounter } = this.props;
         const encounterState : any = {...this.state.createEncounterForm};
         let formData : any = {};
 
         for( let item in encounterState){
             formData[item] = encounterState[item].value;
         }
-        console.log(formData);
-        this.props.createEncounter( formData );
-        console.log("Back in create encounter");
-        console.log(this.props.history.location);
-        this.props.history.push('/encounter');
+        this.setState({sendToEncounter: formData})
+        dispatch(createEncounter( formData ));
+        this.props.history.push('encounter')
     }
 
     render(){
@@ -138,15 +126,15 @@ class CreateEncounter extends Component<{}, CreateEncounterState>{
         {this.state.createEncounterForm.enemy.change = (event: any) => this.createEncounterChange('enemy', event)}
         {this.state.createEncounterForm.terrain.change = (event: any) => this.createEncounterChange('terrain', event)}
         const form = (
-            <form onSubmit={(event: React.FormEvent<HTMLFormElement>) => this.createEncounterHandler(event)}>
+            <form onSubmit={(event: FormEvent) => this.createEncounterHandler(event)}>
                <Input {...this.state.createEncounterForm.name} />
                <Input {...this.state.createEncounterForm.player} />
                <Input {...this.state.createEncounterForm.enemy} />
                <Input {...this.state.createEncounterForm.terrain} />
                 
-                <button type="submit">Submit</button>   
+               <button type="submit">Submit</button>
             </form>
-
+            
         )
         return (
             <Fragment>
@@ -157,5 +145,8 @@ class CreateEncounter extends Component<{}, CreateEncounterState>{
 
 };
 
+function mapDispatchToProps ( dispatch: Dispatch ) {
+    return { dispatch, createEncounter }
+}
 
-export default connect( null, {createEncounter})(CreateEncounter);
+export default connect( null, mapDispatchToProps)(CreateEncounter);

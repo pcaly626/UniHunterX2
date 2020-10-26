@@ -51,3 +51,28 @@ ipcMain.on('create-encounter', (event: IpcMainEvent, data : any ) =>{
 
     mainWindow?.webContents.send('encounter-created', data);
 })
+
+
+ipcMain.on('load-encounter', () =>{
+     fs.readFile(
+        path.join(process.cwd(),'electron','encounters','encounter.json'), 'utf8', function(err, data){
+            if(err){
+                console.error(err);
+            }
+            console.log('File Loaded')
+            mainWindow?.webContents.send('encounter-loaded', JSON.parse(data));
+        }
+    )
+})
+
+ipcMain.on('update-encounter', (event: IpcMainEvent, data : any ) =>{
+    fs.writeFile(
+        path.join(process.cwd(),'electron','encounters','encounter.json'), JSON.stringify(data), function(err){
+            if(err){
+                return console.error(err);
+            }
+            console.log('File Updated')
+        }
+    )
+    mainWindow?.webContents.send('encounter-updated', data);
+})

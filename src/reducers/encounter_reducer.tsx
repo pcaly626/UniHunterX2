@@ -1,20 +1,16 @@
-
+import { EncounterActionTypes, CREATE_ENCOUNTER, LOAD_ENCOUNTER } from '../actions/action_types';
 const initialState = {
-    encounter : []
+    encounter : {}
 }
 
-
-type Action = { type: "CREATE_ENCOUNTER", payload: string}
-
-export default function encounter(state : any = initialState, action: Action) {
-
+export default function(state : any = initialState, action: EncounterActionTypes) {
     switch( action.type ) {
-        case "CREATE_ENCOUNTER": 
+        case CREATE_ENCOUNTER: 
             return {
                 ...state,
                 encounter: action.payload
             }
-        case "LOAD_ENCOUNTER": 
+        case LOAD_ENCOUNTER: 
             return {
                 ...state,
                 encounter: action.payload

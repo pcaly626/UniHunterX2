@@ -4,19 +4,19 @@ import { EncounterElement } from './InputTypes';
 const input = (props : EncounterElement) =>{
     let inputElement;
     switch(props.type) {
-        case 'input': inputElement = (<input className={props.class} value={props.value} placeholder={props.placeHolder} onChange={props.change}/>)
+        case 'input': inputElement = (<input key={props.label} className={props.css} value={props.value} placeholder={props.placeHolder} onChange={props.change}/>)
             break;
         case 'select':inputElement =
-        <select className={props.class} onChange={props.change}>
+        <select className={props.css} onChange={props.change}>
             {props.options.map( option => (
-                <option {...option}>
+                <option key={option.value}{...option}>
                     {option.value}
                 </option>
             ))}
         </select>
         break;
         
-        default: inputElement = <input/>
+        default: inputElement = <input key={props.label} />
     }
     return (
         <div>

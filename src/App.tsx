@@ -1,5 +1,5 @@
 import React, {Component, Fragment} from 'react';
-import { HashRouter as Router, Switch, Route } from "react-router-dom";
+import { HashRouter, IndexRoute, Switch, Route } from "react-router-dom";
 import { Provider } from 'react-redux';
 import './App.css';
 import CreateEncounter from './components/encounter/CreateEncounter';
@@ -11,12 +11,12 @@ class App extends Component {
   render(){
     return (
       <Provider store={store}>
-        <Router>
+        <HashRouter>
             <Switch>
-              <Route path='/' component={CreateEncounter} />
-              <Route path='/encounter' component={EncounterPage}/>
+              <Route path='/' exact  component={CreateEncounter} />
+              <Route path='/encounter' exact component={EncounterPage}/>
             </Switch>
-        </Router>
+        </HashRouter>
       </Provider>
     );
   }
