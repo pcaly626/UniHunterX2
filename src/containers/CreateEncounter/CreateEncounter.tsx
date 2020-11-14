@@ -17,7 +17,7 @@ class CreateEncounter extends Component<{}, CreateEncounterState>{
                     label:"Encounter Name",
                     placeHolder:"Example: Battle of Underbergstad",
                     value:"",
-                    css:"",
+                    css:"textInput",
                     type: "input",
                     change:  (event: ChangeEvent) => {},
                     options: [
@@ -95,7 +95,7 @@ class CreateEncounter extends Component<{}, CreateEncounterState>{
             sendToEncounter: {}
         }
     
-    private createEncounterChange = (element : string, event : ChangeEvent) =>{
+    createEncounterChange = (element : string, event : ChangeEvent) =>{
         const updateForm : any = {...this.state.createEncounterForm};
         let updateElement : any;
         for(let key in updateForm){
@@ -106,7 +106,7 @@ class CreateEncounter extends Component<{}, CreateEncounterState>{
         this.setState({createEncounterForm: updateForm});
     }
 
-    private createEncounterHandler = (event : ChangeEvent) =>{
+    createEncounterHandler = (event : ChangeEvent) =>{
         event.preventDefault();
         const { dispatch, createEncounter } = this.props;
         const encounterState : any = {...this.state.createEncounterForm};
@@ -123,14 +123,14 @@ class CreateEncounter extends Component<{}, CreateEncounterState>{
     render(){
         
         return (
-            <Fragment>
+            <div className="CreateEncounter">
                 <EncounterForm 
                     elements={this.state.createEncounterForm} 
                     handleSubmit={this.createEncounterHandler} 
                     handleChange={this.createEncounterChange}
                 />
                 
-            </Fragment>
+            </div>
         )
     }
 

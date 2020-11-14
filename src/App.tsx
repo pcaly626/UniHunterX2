@@ -1,9 +1,9 @@
 import React, {Component, Fragment} from 'react';
-import { HashRouter, IndexRoute, Switch, Route } from "react-router-dom";
+import { HashRouter, Switch, Route } from "react-router-dom";
 import { Provider } from 'react-redux';
 import './App.css';
-import CreateEncounter from './components/encounter/CreateEncounter';
-import EncounterPage from './components/encounter/EncounterPage';
+import CreateEncounter from './containers/CreateEncounter/CreateEncounter';
+import EncounterPage from './containers/Encounter/EncounterPage';
 import store from './store';
 
 class App extends Component {

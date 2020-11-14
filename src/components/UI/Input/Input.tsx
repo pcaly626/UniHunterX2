@@ -1,5 +1,5 @@
 import React from 'react';
-import { EncounterElement } from './InputTypes';
+import { EncounterElement } from '../Types/InputTypes';
 
 const input = (props : EncounterElement) =>{
     let inputElement;
@@ -21,6 +21,7 @@ const input = (props : EncounterElement) =>{
     return (
         <div>
             <label>{props.label}</label>
+            <br/>
             {inputElement}
         </div>
     )
