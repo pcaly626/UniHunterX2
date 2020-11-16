@@ -48,9 +48,7 @@ export interface Player {
         success: number,
         failure: number
     }
-
 }
-
 
 export interface CreateEncounterState {
     createEncounterForm: {
@@ -99,7 +97,7 @@ export interface CreateEncounterState {
             } >;
         }
     },
-    sendToEncounter?: any | null
+    queue?: any | null
 };
 
 export interface Round {}
@@ -107,4 +105,11 @@ export interface Round {}
 export interface Encounter {
     roundNumber: number,
     round: Array < Round >
+}
+
+export interface EncounterData {
+    name: string,
+    players: Array<Player>,
+    enemys: Array<string>,
+    terran: string
 }

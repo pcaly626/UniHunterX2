@@ -1,0 +1,14 @@
+.QueueEntitiesSidebar {
+    height: 100%;
+    width: 100%;
+    border: 1px solid black;
+    box-shadow: 5px 5px 5px 5px black ;
+}
+
+.Entity {
+    margin: 5%;
+    padding-left: 10px;
+    border: 1px solid black;
+    border-radius: 5px;
+    width: 100%;
+}

@@ -13,8 +13,8 @@ class EncounterPage extends Component
     }
 
     render() {
-        
         return (
+            <div className="EncounterPage">
             <div className="row">
                 <div className="col-3">
                     <button onClick={() => {this.props.history.push("/")}}>Back</button>
@@ -29,8 +29,9 @@ class EncounterPage extends Component
                     <button> Turn</button>
                 </div>
                 <div className="col-3">
-                    {Object.keys(this.props.encounter).map( key => ( <h1 key={key}>{this.props.encounter[key]}</h1>))}
+                    {Object.keys(this.props.encounter).map( key =>  {console.log(this.props.encounter[key])})}
                 </div>
+            </div>
             </div>
         )
     }

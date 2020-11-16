@@ -4,10 +4,11 @@ import { Dispatch } from 'redux';
 import './CreateEncounter.css';
 import Input from '../../components/UI/Input/Input'
 import { createEncounter } from '../../actions/encounter';
-import { CreateEncounterState } from '../Types/EncounterTypes'; 
+import { CreateEncounterState, Player, EncounterData } from '../Types/EncounterTypes'; 
 import EncounterPage from '../Encounter/EncounterPage';
 import { Link } from 'react-router-dom'; 
 import EncounterForm from '../../components/EncounterForm/EncounterForm';
+import QueueEntitiesSidebar from '../../components/QueueEntitiesSidebar/QueueEntitiesSidebar';
 
 class CreateEncounter extends Component<{}, CreateEncounterState>{
 
@@ -92,7 +93,10 @@ class CreateEncounter extends Component<{}, CreateEncounterState>{
                 }
 
             },
-            sendToEncounter: {}
+            queue: {
+                players: [],
+                enemys: []
+            }
         }
     
     createEncounterChange = (element : string, event : ChangeEvent) =>{
@@ -109,27 +113,69 @@ class CreateEncounter extends Component<{}, CreateEncounterState>{
     createEncounterHandler = (event : ChangeEvent) =>{
         event.preventDefault();
         const { dispatch, createEncounter } = this.props;
-        const encounterState : any = {...this.state.createEncounterForm};
-        let formData : any = {};
+        const encounterState = {...this.state.createEncounterForm};
+        const queue = {...this.state.queue};
+        let formData = {
+            name: encounterState.name.value,
+            terran: encounterState.terrain.value,
+            players: queue.players,
+            enemys: queue.enemys,
+        };
 
-        for( let item in encounterState){
-            formData[item] = encounterState[item].value;
-        }
-        this.setState({sendToEncounter: formData})
+        this.setState({queue: formData})
         dispatch(createEncounter( formData ));
         this.props.history.push('encounter')
+    }
+
+    addPlayerOrEnemy = (type: string) => {
+        let allSelectedEntities = {...this.state.queue};
+        let players = new Set(allSelectedEntities.players);
+        let enemys = new Set(allSelectedEntities.enemys);
+        if( type == "player" ){
+            players.add( this.state.createEncounterForm.player.value );
+        }
+        if( type == "enemy" ){
+            enemys.add(this.state.createEncounterForm.enemy.value)
+        }
+        
+        allSelectedEntities.players = [...players];
+        allSelectedEntities.enemys = [...enemys];
+        this.setState({queue: allSelectedEntities});
+    }
+
+    removePlayerOrEnemy = (type: string) => {
+        let allSelectedEntities = {...this.state.queue};
+        if( type == "player" ){
+            allSelectedEntities.players = allSelectedEntities.players.filter( player => {return player != this.state.createEncounterForm.player.value} );
+        }
+        if( type == "enemy" ){
+            allSelectedEntities.enemys = allSelectedEntities.enemys.filter( enemy => {return enemy != this.state.createEncounterForm.enemy.value} );
+        }
+
+        this.setState({queue: allSelectedEntities});
     }
 
     render(){
         
         return (
             <div className="CreateEncounter">
-                <EncounterForm 
-                    elements={this.state.createEncounterForm} 
-                    handleSubmit={this.createEncounterHandler} 
-                    handleChange={this.createEncounterChange}
-                />
-                
+                <div className="row">
+                    <div className="col-7">
+                        <EncounterForm 
+                            elements={this.state.createEncounterForm} 
+                            handleSubmit={this.createEncounterHandler} 
+                            handleChange={this.createEncounterChange}
+                            add={this.addPlayerOrEnemy}
+                            remove={this.removePlayerOrEnemy}
+                        />
+                    </div>
+                    <div className="col-3"></div>
+                    <div className="col-3">
+                        <QueueEntitiesSidebar
+                            queue={this.state.queue}
+                        />
+                    </div>
+                </div>
             </div>
         )
     }

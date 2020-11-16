@@ -39,16 +39,26 @@ app.allowRendererProcessReuse = true;
 
 
 ipcMain.on('create-encounter', (event: IpcMainEvent, data : any ) =>{
-
-    fs.writeFile(
+    let players = [];
+    let formData = data;
+    formData.players.map( player => {
+        let reader = fs.readFileSync(path.join(process.cwd(),'electron','encounters',`${player}.json`), function(err, data) {
+                if(err){
+                    return console.error(err);
+                }
+            });
+        players.push(JSON.parse(reader));
+    });
+    data.players= players;
+    fs.writeFileSync(
         path.join(process.cwd(),'electron','encounters','encounter.json'), JSON.stringify(data), function(err){
             if(err){
                 return console.error(err);
             }
             console.log('File Created')
-        }
-    )
-
+        })
+    console.log(players)
+    console.log(data)
     mainWindow?.webContents.send('encounter-created', data);
 })
 

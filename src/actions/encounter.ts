@@ -9,6 +9,7 @@ export const createEncounter = (encounter : Encounter) => (dispatch : Dispatch) 
     ipcRenderer.on( 'encounter-created', (event: Event, data : any ) =>
      dispatch({type: CREATE_ENCOUNTER, payload: data})
     )
+
 }
 
 export const loadEncounter = () => {

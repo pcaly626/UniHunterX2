@@ -1,0 +1,30 @@
+.EncounterForm {
+    margin: 0 5%;
+    padding: 5%;
+    height: 100%;
+    width: 100%;
+    border: 1px solid black;
+    box-shadow: 5px 5px 5px 5px black;
+}
+
+label{
+    color:red;
+}
+
+input[type=text]{
+    color:blue;
+}
+
+select {
+    color: blue;
+    width: 100%;
+}
+
+button {
+    padding: 10px;
+}
+
+span {
+    padding-left: 10px;
+    text-align: center;
+}
