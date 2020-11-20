@@ -1,14 +1,36 @@
 .QueueEntitiesSidebar {
     height: 100%;
     width: 100%;
-    border: 1px solid black;
-    box-shadow: 5px 5px 5px 5px black ;
+    box-shadow: 4px 5px 5px 2px rgb(165, 165, 165);
+    border-radius: 5px;
 }
 
 .Entity {
-    margin: 5%;
-    padding-left: 10px;
-    border: 1px solid black;
-    border-radius: 5px;
+    margin: 1%;
+    font-size: 1.25rem;
+    line-height: 1.25;
     width: 100%;
+    text-align: center;
+}
+
+.QueueEntitiesSidebar .QueueItem {
+    display:flex;
+    width: 100%;
+    color: white;
+    margin: 1px 0;
+    background-color: rgb(114, 114, 114);
+    border-radius:5px;
+}
+
+.QueueEntitiesSidebar img {
+    height: 15px;
+    width: 25px;
+    padding: 27px 0px 0px 5px;
+}
+
+.QueueEntitiesSidebar .Portait {
+    border-radius: 50%;
+    height: 35px;
+    width: 40px;
+    padding: 13px 10px 16px 10px;
 }

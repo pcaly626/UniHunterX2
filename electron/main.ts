@@ -1,4 +1,4 @@
-import { app, BrowserWindow, ipcRenderer, ipcMain, IpcMainEvent } from 'electron';
+import { app, BrowserWindow, ipcRenderer, ipcMain, IpcMainEvent, screen } from 'electron';
 
 import * as path from 'path';
 import * as url from 'url';
@@ -8,9 +8,10 @@ import fs from 'fs';
 let mainWindow : BrowserWindow | null;
 
 function createWindow() {
+    const { width, height } = screen.getPrimaryDisplay().workAreaSize;
     mainWindow = new BrowserWindow({
-        width: 800,
-        height: 600,
+        width: width,
+        height: height,
         webPreferences: {
             nodeIntegration: true
         }

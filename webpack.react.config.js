@@ -30,8 +30,15 @@ module.exports = {
         exclude: /node_modules/,
         use: {
             loader: 'css-loader',
-        }
+        },
       },
+      {
+        test: /\.(jpg|svg|png)$/,
+        exclude: /node_modules/,
+        use: {
+            loader: 'file-loader'
+        },
+    }
     ],
   },
     devServer: {

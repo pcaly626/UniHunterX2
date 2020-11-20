@@ -143,13 +143,13 @@ class CreateEncounter extends Component<{}, CreateEncounterState>{
         this.setState({queue: allSelectedEntities});
     }
 
-    removePlayerOrEnemy = (type: string) => {
+    removePlayerOrEnemy = (type: string, value: string) => {
         let allSelectedEntities = {...this.state.queue};
         if( type == "player" ){
-            allSelectedEntities.players = allSelectedEntities.players.filter( player => {return player != this.state.createEncounterForm.player.value} );
+            allSelectedEntities.players = allSelectedEntities.players.filter( player => {return player != value} );
         }
         if( type == "enemy" ){
-            allSelectedEntities.enemys = allSelectedEntities.enemys.filter( enemy => {return enemy != this.state.createEncounterForm.enemy.value} );
+            allSelectedEntities.enemys = allSelectedEntities.enemys.filter( enemy => {return enemy != value} );
         }
 
         this.setState({queue: allSelectedEntities});
@@ -158,25 +158,29 @@ class CreateEncounter extends Component<{}, CreateEncounterState>{
     render(){
         
         return (
-            <div className="CreateEncounter">
-                <div className="row">
-                    <div className="col-7">
-                        <EncounterForm 
-                            elements={this.state.createEncounterForm} 
-                            handleSubmit={this.createEncounterHandler} 
-                            handleChange={this.createEncounterChange}
-                            add={this.addPlayerOrEnemy}
-                            remove={this.removePlayerOrEnemy}
-                        />
-                    </div>
-                    <div className="col-3"></div>
-                    <div className="col-3">
-                        <QueueEntitiesSidebar
-                            queue={this.state.queue}
-                        />
-                    </div>
+        <div className="container">
+            <div className="row">
+                <h1>Let the Combat Begin</h1>
+            </div>
+            <div className="row">
+                <div className="col-6">
+                    <EncounterForm 
+                        elements={this.state.createEncounterForm} 
+                        handleSubmit={this.createEncounterHandler} 
+                        handleChange={this.createEncounterChange}
+                        add={this.addPlayerOrEnemy}
+                        
+                    />
+                </div>
+                <div className="col-3"></div>
+                <div className="col-3">
+                    <QueueEntitiesSidebar
+                        queue={this.state.queue}
+                        remove={this.removePlayerOrEnemy}
+                    />
                 </div>
             </div>
+        </div>
         )
     }
 
