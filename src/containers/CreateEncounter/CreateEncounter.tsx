@@ -158,26 +158,28 @@ class CreateEncounter extends Component<{}, CreateEncounterState>{
     render(){
         
         return (
-        <div className="container">
-            <div className="row">
-                <h1>Let the Combat Begin</h1>
-            </div>
-            <div className="row">
-                <div className="col-6">
-                    <EncounterForm 
-                        elements={this.state.createEncounterForm} 
-                        handleSubmit={this.createEncounterHandler} 
-                        handleChange={this.createEncounterChange}
-                        add={this.addPlayerOrEnemy}
-                        
-                    />
+        <div className="CreateEncounter">
+            <div className="container">
+                <div className="row">
+                    <h1>Let the Combat Begin</h1>
                 </div>
-                <div className="col-3"></div>
-                <div className="col-3">
-                    <QueueEntitiesSidebar
-                        queue={this.state.queue}
-                        remove={this.removePlayerOrEnemy}
-                    />
+                <div className="row">
+                    <div className="col-6">
+                        <EncounterForm 
+                            elements={this.state.createEncounterForm} 
+                            handleSubmit={this.createEncounterHandler} 
+                            handleChange={this.createEncounterChange}
+                            add={this.addPlayerOrEnemy}
+                            
+                        />
+                    </div>
+                    <div className="col-3"></div>
+                    <div className="col-3">
+                        <QueueEntitiesSidebar
+                            queue={this.state.queue}
+                            remove={this.removePlayerOrEnemy}
+                        />
+                    </div>
                 </div>
             </div>
         </div>

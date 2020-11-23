@@ -9,7 +9,9 @@ class EncounterPage extends Component
 {
 
     state = {
-        round: 1
+        round: 1,
+        players: [],
+        enemys: []
     }
 
     render() {

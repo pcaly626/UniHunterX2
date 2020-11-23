@@ -1,7 +1,7 @@
-.App {
-  text-align: center;
-  background-color: burlywood;
+html {
+  background-image: url(./assets/images/sword-in-the-stone.png);
 }
+
 
 .App-logo {
   height: 40vmin;

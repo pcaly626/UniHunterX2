@@ -10,6 +10,7 @@ class App extends Component {
 
   render(){
     return (
+      <div className="App">
       <Provider store={store}>
         <HashRouter>
             <Switch>
@@ -18,6 +19,7 @@ class App extends Component {
             </Switch>
         </HashRouter>
       </Provider>
+      </div>
     );
   }
 }

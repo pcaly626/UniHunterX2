@@ -10,8 +10,8 @@ const encounterForm = ( props : any ) => {
     Object.keys(props.elements).forEach( key => { props.elements[key].change = (event: FormEvent) => props.handleChange(key, event) })
 
     return (
-        <form onSubmit={(event: FormEvent) => props.handleSubmit(event)}>
-            <div className="EncounterForm">
+        <div>
+        <form className="EncounterForm" onSubmit={(event: FormEvent) => props.handleSubmit(event)}>
                 <div className="row">    
                     <div className="col-2"></div>
                     <div className="col-10">
@@ -27,6 +27,7 @@ const encounterForm = ( props : any ) => {
                             </select>
                             <img src={Plus} onClick={()=>props.add('player') } />
                         </div>
+                        <br />
                         <label>{props.elements.enemy.label}</label>
                         <div className="Stack">
                             <select className={props.elements.enemy.css} onChange={props.elements.enemy.change}>
@@ -38,17 +39,19 @@ const encounterForm = ( props : any ) => {
                             </select>
                             <img src={Plus} onClick={()=>props.add('enemy') } />
                         </div>
+                        <br />
                         <Input key={props.elements.terrain} {...props.elements.terrain} />   
                     </div>
                 </div>
                 <div className="row">
                     <div className="col-8"></div>
                     <div className="col-4">
-                        <button type="submit">Submit</button>
+                        <button type="submit">Begin</button>
                     </div>
                 </div>
-            </div>
         </form>
+        <div className="EncounterPlatform"></div>
+        </div>
     )
 }
 
