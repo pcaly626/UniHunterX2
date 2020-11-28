@@ -17,7 +17,8 @@ export interface Weapon {
         modifier: number
     },
     type: string,
-    hand: number
+    hand: number,
+    range: number
 }
 
 export interface Spell {
@@ -110,6 +111,6 @@ export interface Encounter {
 export interface EncounterData {
     name: string,
     players: Array<Player>,
-    enemys: Array<string>,
+    enemies: Array<string>,
     terran: string
 }

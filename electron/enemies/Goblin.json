@@ -1,0 +1,50 @@
+{
+    "name": "Goblin",
+    "modifiers": {
+        "strength": 8,
+        "dexterity": 14,
+        "constitution": 10,
+        "intelligence": 10,
+        "wisdom": 8,
+        "charisma": 8,
+        "proficiency": 1
+    },
+    "health": 7,
+    "level": 4,
+    "armorClass": 15,
+    "size": "small",
+    "attacks": [
+        {
+            "actions": [
+                {
+                    "name": "scimitar",
+                    "dice": {
+                        "type": 6,
+                        "amount": 1,
+                        "modifier": 2
+                    },
+                    "type": "slashing",
+                    "hand": 1,
+                    "range":5
+                }, {
+                    "name": "shortbow",
+                    "dice": {
+                        "type": 6,
+                        "amount": 1,
+                        "modifier": 2
+                    },
+                    "type": "slashing",
+                    "hand": 1,
+                    "range":80
+                }
+            ]
+        }
+    ],
+    "traits": [
+        {
+            "name": "nimble escape",
+            "type": "bonus action",
+            "description": " The goblin can take the Disengage or Hide action as a bonus action on each of its turns."
+        }
+    ]
+}

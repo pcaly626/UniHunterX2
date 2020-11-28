@@ -64,10 +64,10 @@ class CreateEncounter extends Component<{}, CreateEncounterState>{
                             value:"Choose Enemy"
                         },
                         {
-                            value:"Goblins"
+                            value:"Goblin"
                         },
                         {
-                            value:"Orcs"
+                            value:"Orc"
                         }
                     ]
                 },
@@ -95,7 +95,7 @@ class CreateEncounter extends Component<{}, CreateEncounterState>{
             },
             queue: {
                 players: [],
-                enemys: []
+                enemies: []
             }
         }
     
@@ -119,7 +119,7 @@ class CreateEncounter extends Component<{}, CreateEncounterState>{
             name: encounterState.name.value,
             terran: encounterState.terrain.value,
             players: queue.players,
-            enemys: queue.enemys,
+            enemies: queue.enemies,
         };
 
         this.setState({queue: formData})
@@ -130,16 +130,16 @@ class CreateEncounter extends Component<{}, CreateEncounterState>{
     addPlayerOrEnemy = (type: string) => {
         let allSelectedEntities = {...this.state.queue};
         let players = new Set(allSelectedEntities.players);
-        let enemys = new Set(allSelectedEntities.enemys);
+        let enemies = [...allSelectedEntities.enemies];
         if( type == "player" ){
             players.add( this.state.createEncounterForm.player.value );
         }
         if( type == "enemy" ){
-            enemys.add(this.state.createEncounterForm.enemy.value)
+            enemies.push( this.state.createEncounterForm.enemy.value )
         }
         
         allSelectedEntities.players = [...players];
-        allSelectedEntities.enemys = [...enemys];
+        allSelectedEntities.enemies = [...enemies];
         this.setState({queue: allSelectedEntities});
     }
 
@@ -149,7 +149,20 @@ class CreateEncounter extends Component<{}, CreateEncounterState>{
             allSelectedEntities.players = allSelectedEntities.players.filter( player => {return player != value} );
         }
         if( type == "enemy" ){
-            allSelectedEntities.enemys = allSelectedEntities.enemys.filter( enemy => {return enemy != value} );
+            let tempEnemies = [];
+            let foundEnemy = false;
+
+            for( let index = 0; index < allSelectedEntities.enemies.length; index++)
+            {
+                if(value == allSelectedEntities.enemies[index] && !foundEnemy){
+                    foundEnemy = true;
+                }
+                else{
+                    tempEnemies.push(allSelectedEntities.enemies[index])
+                }
+            }
+            console.log(tempEnemies);
+            allSelectedEntities.enemies = tempEnemies;
         }
 
         this.setState({queue: allSelectedEntities});

@@ -1,0 +1,49 @@
+{
+    "name": "Orc",
+    "modifiers": {
+        "strength": 16,
+        "dexterity": 12,
+        "constitution": 16,
+        "intelligence": 7,
+        "wisdom": 11,
+        "charisma": 10,
+        "proficiency": 1
+    },
+    "health": 15,
+    "armorClass": 13,
+    "size": "medium",
+    "attacks": [
+        {
+            "actions": [
+                {
+                    "name": "great axe",
+                    "dice": {
+                        "type": 12,
+                        "amount": 1,
+                        "modifier": 3
+                    },
+                    "type": "slashing",
+                    "hand": 2,
+                    "range": 5
+                }, {
+                    "name": "javelin",
+                    "dice": {
+                        "type": 6,
+                        "amount": 1,
+                        "modifier": 3
+                    },
+                    "type": "piercing",
+                    "hand": 1,
+                    "range": 30
+                }
+            ]
+        }
+    ],
+    "traits": [
+        {
+            "name": "nimble escape",
+            "type": "bonus action",
+            "description": " The goblin can take the Disengage or Hide action as a bonus action on each of its turns."
+        }
+    ]
+}

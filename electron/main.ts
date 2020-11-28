@@ -38,19 +38,29 @@ function createWindow() {
 app.on('ready', createWindow);
 app.allowRendererProcessReuse = true;
 
-
 ipcMain.on('create-encounter', (event: IpcMainEvent, data : any ) =>{
-    let players = [];
+    console.log(data)
+    let players : Array<Object> = [];
+    let enemies : Array<Object> = [];
     let formData = data;
-    formData.players.map( player => {
-        let reader = fs.readFileSync(path.join(process.cwd(),'electron','encounters',`${player}.json`), function(err, data) {
+    formData.players.map( (player : string) => {
+        let reader = fs.readFileSync(path.join(process.cwd(),'electron','players',`${player}.json`), function(err, data) {
                 if(err){
                     return console.error(err);
                 }
             });
         players.push(JSON.parse(reader));
     });
-    data.players= players;
+    formData.enemies.map( (enemy:string) => {
+        let reader = fs.readFileSync(path.join(process.cwd(),'electron','enemies',`${enemy}.json`), function(err, data) {
+                if(err){
+                    return console.error(err);
+                }
+            });
+        enemies.push(JSON.parse(reader));
+    });
+    data.players = players;
+    data.enemies = enemies;
     fs.writeFileSync(
         path.join(process.cwd(),'electron','encounters','encounter.json'), JSON.stringify(data), function(err){
             if(err){
@@ -59,6 +69,7 @@ ipcMain.on('create-encounter', (event: IpcMainEvent, data : any ) =>{
             console.log('File Created')
         })
     console.log(players)
+    console.log(enemies)
     console.log(data)
     mainWindow?.webContents.send('encounter-created', data);
 })
