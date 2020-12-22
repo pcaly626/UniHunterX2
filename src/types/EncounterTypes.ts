@@ -26,7 +26,34 @@ export interface Spell {
     slots: number
 }
 
+export interface Enemy {
+    name: string,
+    modifiers: {
+        strength: number,
+        dexterity: number,
+        constitution: number,
+        intelligence: number,
+        wisdom: number,
+        charisma: number,
+        proficiency: number
+    },
+    health: number,
+    level: number,
+    armorClass: number,
+    size: string,
+    attacks: Array < {
+        weapons: Array < Weapon >,
+        spells: Array < Spell >
+    } >,
+    traits: Array < {
+        name: string,
+        type: string,
+        description: string
+    } >
+}
+
 export interface Player {
+    name: string,
     modifiers: {
         strength: number,
         dexterity: number,
@@ -105,12 +132,15 @@ export interface Round {}
 
 export interface Encounter {
     roundNumber: number,
-    round: Array < Round >
+    round: Array < Round >,
+    enemies: Array < Enemy >,
+    players: Array < Player >,
+    terran: string
 }
 
 export interface EncounterData {
     name: string,
-    players: Array<Player>,
-    enemies: Array<string>,
+    players: Array < Player >,
+    enemies: Array < string >,
     terran: string
 }

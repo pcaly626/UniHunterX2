@@ -1,4 +1,37 @@
 .EncounterPage {
-    height: 500px;
-    background-color: blueviolet;
+    width: 100%;
+    height: 800px;
+    background-color: white;
+}
+.EncounterBackArrow {
+    height: 15px;
+    width: 25px;
+    padding: 27px 0px 0px 5px;
+
+}
+
+.EncounterBackArrow:hover {
+    -webkit-filter: invert(50%);
+}
+
+.EncounterHeader {
+    background-color: white;
+}
+
+.EncounterTitle {
+    text-transform: capitalize;
+    text-align: center;
+}
+
+.EncounterRound {
+    height:80px;
+    background-color: rgb(175, 175, 175);
+    text-align: center;
+}
+
+.EncounterRound h4 {
+    margin:10px 0 0 0;
+}
+.EncounterRound h1 {
+    margin:0;
 }

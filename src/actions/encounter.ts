@@ -1,7 +1,7 @@
 
-const { ipcRenderer } = window.require('electron');
 import axios from 'axios';
-import {EncounterActionTypes, Encounter, CREATE_ENCOUNTER, LOAD_ENCOUNTER} from './action_types';
+const { ipcRenderer } = window.require('electron');
+import {EncounterActionTypes, Encounter, CREATE_ENCOUNTER, LOAD_ENCOUNTER} from '../types/ActionTypes';
 import { Dispatch } from 'redux';
 
 export const createEncounter = (encounter : Encounter) => (dispatch : Dispatch) =>{
@@ -10,11 +10,12 @@ export const createEncounter = (encounter : Encounter) => (dispatch : Dispatch) 
      dispatch({type: CREATE_ENCOUNTER, payload: data})
     )
 
+    return 'encounter';
 }
 
 export const loadEncounter = () => {
     ipcRenderer.send('load-encounter');
-    ipcRenderer.on( 'encounter-loaded', (event: Event, data : Encounter ) => (dispatch : Dispatch) =>
+    ipcRenderer.on( 'encounter-loaded', (event: Event, data : any ) => (dispatch : Dispatch) =>
         dispatch({type: LOAD_ENCOUNTER, payload: data})
     )
 }

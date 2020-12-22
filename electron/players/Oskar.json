@@ -14,7 +14,7 @@
 	"armorClass": 18,
 	"playerClass": "cleric",
 	"playerRace": "gnome",
-	"feature": [
+	"features": [
 		{
 			"warPriest": {
 				"description": "Your god delivers bolts of inspiration to you while you are engaged in battle. When you use the attack action, you can make one weapon attack as a bonus action. You may do this once for each Wisdom modifier point you have and regain uses on a long rest."

@@ -1,5 +1,5 @@
 
-import { Encounter } from '../containers/Types/EncounterTypes';
+import { Encounter } from './EncounterTypes';
 
 export const CREATE_ENCOUNTER = "CREATE_ENCOUNTER";
 export const LOAD_ENCOUNTER = "LOAD_ENCOUNTER";

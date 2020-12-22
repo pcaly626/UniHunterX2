@@ -38,7 +38,7 @@ function createWindow() {
 app.on('ready', createWindow);
 app.allowRendererProcessReuse = true;
 
-ipcMain.on('create-encounter', (event: IpcMainEvent, data : any ) =>{
+ipcMain.on('create-encounter', ( event: IpcMainEvent, data : any ) =>{
     console.log(data)
     let players : Array<Object> = [];
     let enemies : Array<Object> = [];
@@ -74,17 +74,11 @@ ipcMain.on('create-encounter', (event: IpcMainEvent, data : any ) =>{
     mainWindow?.webContents.send('encounter-created', data);
 })
 
+ipcMain.on('load-encounter', (event: IpcMainEvent ) =>{
+    let encounter = fs.readFileSync(path.join(process.cwd(),'electron','encounters','encounter.json'), {encoding: 'utf8', flag: 'r'})
+    console.log("LOAD ENCOUNTER")
 
-ipcMain.on('load-encounter', () =>{
-     fs.readFile(
-        path.join(process.cwd(),'electron','encounters','encounter.json'), 'utf8', function(err, data){
-            if(err){
-                console.error(err);
-            }
-            console.log('File Loaded')
-            mainWindow?.webContents.send('encounter-loaded', JSON.parse(data));
-        }
-    )
+    mainWindow?.webContents.send('encounter-loaded', encounter);
 })
 
 ipcMain.on('update-encounter', (event: IpcMainEvent, data : any ) =>{

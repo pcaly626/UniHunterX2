@@ -1,5 +1,5 @@
 import React from 'react';
-import { EncounterElement } from '../Types/InputTypes';
+import { EncounterElement } from '../../../types/InputTypes';
 import Plus from '../../../assets/icons/plus.svg';
 const input = (props : EncounterElement) =>{
     let inputElement;

@@ -1,4 +1,4 @@
-import { EncounterActionTypes, CREATE_ENCOUNTER, LOAD_ENCOUNTER } from '../actions/action_types';
+import { EncounterActionTypes, CREATE_ENCOUNTER, LOAD_ENCOUNTER } from '../types/ActionTypes';
 const initialState = {
     encounter : {}
 }

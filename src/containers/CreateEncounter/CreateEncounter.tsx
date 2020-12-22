@@ -4,7 +4,7 @@ import { Dispatch } from 'redux';
 import './CreateEncounter.css';
 import Input from '../../components/UI/Input/Input'
 import { createEncounter } from '../../actions/encounter';
-import { CreateEncounterState, Player, EncounterData } from '../Types/EncounterTypes'; 
+import { CreateEncounterState, Player, EncounterData } from '../../types/EncounterTypes'; 
 import EncounterPage from '../Encounter/EncounterPage';
 import { Link } from 'react-router-dom'; 
 import EncounterForm from '../../components/EncounterForm/EncounterForm';
@@ -123,8 +123,7 @@ class CreateEncounter extends Component<{}, CreateEncounterState>{
         };
 
         this.setState({queue: formData})
-        dispatch(createEncounter( formData ));
-        this.props.history.push('encounter')
+        this.props.history.push(dispatch(createEncounter( formData )));
     }
 
     addPlayerOrEnemy = (type: string) => {
@@ -161,7 +160,6 @@ class CreateEncounter extends Component<{}, CreateEncounterState>{
                     tempEnemies.push(allSelectedEntities.enemies[index])
                 }
             }
-            console.log(tempEnemies);
             allSelectedEntities.enemies = tempEnemies;
         }
 

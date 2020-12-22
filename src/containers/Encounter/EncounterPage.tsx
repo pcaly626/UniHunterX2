@@ -1,50 +1,76 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import { loadEncounter } from '../../actions/encounter';
+import { EncounterData } from '../../types/EncounterTypes';
+import SideBar from '../../components/UI/SideBar/SideBar';
+import BackArrow from '../../assets/icons/back-arrow.svg';
 import './Encounter.css';
 
 
-class EncounterPage extends Component 
-{
+class EncounterPage extends Component {
 
     state = {
         round: 1,
         players: [],
-        enemys: []
+        enemies: []
     }
+
 
     render() {
         return (
             <div className="EncounterPage">
-            <div className="row">
-                <div className="col-3">
-                    <button onClick={() => {this.props.history.push("/")}}>Back</button>
+                <div className="row">
+                    <div className="col-1 EncounterBackArrow">
+                            <img onClick={
+                            () => {
+                                this.props.history.push("/")
+                            }
+                        } src={BackArrow} />
+                    </div>
+                    <div className="col-8">
+                        <div className="row">
+                            <div className="col-4"></div>
+                            <div className="col-4">
+                                <h1 className="EncounterTitle"> {this.props.encounter.name}</h1>
+                                <div className="row">
+                                    <div className="col-4"></div>
+                                    <div className="col-4 EncounterRound">
+                                        <h4>Round</h4>
+                                        <h1>{ this.state.round }</h1>
+                                    </div>
+                                    <div className="col-4"></div>
+                                </div>
+                            </div>
+                            <div className="col-4"></div>
+                        </div>
+                    </div>
+                    <div className="col-3">
+                        <div className="row">
+                            <button>Prev Turn</button>
+                            <button>Turn</button>
+                        </div>
+                        <div className="row">
+                        </div>
+                        <div className="row">
+                            {
+                                this.props.encounter.enemies ? 
+                                    <SideBar enemies={this.props.encounter.enemies} players={this.props.encounter.players}/>
+                                    :
+                                    <div></div>
+                            }
+                        </div>
+                    </div>
                 </div>
-                <div className="col-2"></div>
-                <div className="col-2">
-                    <h1>Encounter Page</h1>
-                    <h3>Round: {this.state.round}</h3>
-                </div>
-                <div className="col-2">
-                    <button>Prev Turn</button>
-                    <button> Turn</button>
-                </div>
-                <div className="col-3">
-                    {Object.keys(this.props.encounter).map( key =>  {console.log(this.props.encounter[key])})}
-                </div>
-            </div>
             </div>
         )
     }
 }
 
-const mapStateToProps = (state : any) => ({
-    encounter: state.encounterReducer.encounter
-})
+const mapStateToProps = (state : any) => ({encounter: state.encounterReducer.encounter})
 
-function mapDispatchToProps ( dispatch: Dispatch ) {
-    return { dispatch, loadEncounter }
+function mapDispatchToProps(dispatch : Dispatch) {
+    return {dispatch, loadEncounter}
 }
 
-export default connect( mapStateToProps, mapDispatchToProps)(EncounterPage);
+export default connect(mapStateToProps, null)(EncounterPage);
