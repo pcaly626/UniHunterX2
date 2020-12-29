@@ -13,9 +13,22 @@ class EncounterPage extends Component {
     state = {
         round: 1,
         players: [],
-        enemies: []
+        enemies: [],
+        queue: []
     }
 
+    rollInitiative(encounter){
+        console.log(encounter.players)
+        for(let i=0;i<encounter.players.length;i++){
+            let roll = Math.floor(Math.random() * (1-20) + 1) + encounter.players.initiativeMod
+            console.log(roll)
+            this.state.queue.push(
+                {initiative: roll,
+                combatant: encounter.player[i]}
+            )
+        }
+        console.log(this.state.queue)
+    }
 
     render() {
         return (
@@ -47,10 +60,11 @@ class EncounterPage extends Component {
                     </div>
                     <div className="col-3">
                         <div className="row">
-                            <button>Prev Turn</button>
-                            <button>Turn</button>
+                            <button id="bigbutton" onClick={() => this.rollInitiative(this.props.encounter)}>Roll Initiative</button>
                         </div>
                         <div className="row">
+                            <button>Prev Turn</button>
+                            <button>Next Turn</button>
                         </div>
                         <div className="row">
                             {

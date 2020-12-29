@@ -35,3 +35,24 @@
 .EncounterRound h1 {
     margin:0;
 }
+
+.EncounterPage button {
+
+}
+.EncounterPage #bigbutton{
+    font-size: 16.5px;
+    padding: 15px 25px;
+    color: orange;
+    text-decoration: blue;    
+}
+.EncounterPage #bigbutton:focus{
+    color: rgb(175, 175, 175);
+    background-color: rgb(100, 100, 100);
+}
+.EncounterPage #bigbutton:hover{
+    color: red;
+}
+.EncounterPage #bigbutton:active{
+    color: rgb(175, 175, 175);
+    background-color: rgb(100, 100, 100);
+}
