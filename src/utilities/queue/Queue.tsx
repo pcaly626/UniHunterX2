@@ -44,6 +44,9 @@ class Queue {
         return this.queue.length == 0;
     }
 
+    /**
+     * Creates a list the moves all elements forward and first element at the end
+     */
     cycleForward(){
         if( this.isEmpty()){
             return false;
@@ -58,6 +61,9 @@ class Queue {
         this.queue = newQueue;
     }
 
+    /**
+     * Creates a list the moves all elements back and last element at the front
+     */
     cycleBack(){
         if( this.isEmpty()){
             return false;
@@ -70,14 +76,29 @@ class Queue {
         this.queue = newQueue;
     }
 
+    /**
+     * Iterate to next queue entry
+     * @return next element or null if at the end
+     */
     next() {
         this.indexOfQueue++;
-        if(this.indexOfQueue >= this.length() && !this.isEmpty()) {
-            this.indexOfQueue = 0;
+        if(this.indexOfQueue >= this.length() || this.isEmpty()) {
+            return null;
         }
         return this.queue[this.indexOfQueue];
     }
 
+    /**
+     * Resets iterator to first element
+     */
+    reset() {
+        this.indexOfQueue = 0
+    }
+
+    /**
+     * Checks to see if there is a next entry
+     * @return {bool}
+     */
     hasNext() {
         if(this.isEmpty())
             return false;
@@ -85,16 +106,31 @@ class Queue {
         return this.indexOfQueue < this.length();
     }
 
-    current() {
+    /**
+     * Current Index
+     * @return index of queue
+     */
+    currentIndex() {
         return this.indexOfQueue;
     }
 
+    /**
+     * Returns the queue as an array
+     */
     getQueue() {
         return this.queue;
     }
 
+    /**
+     * Deep copy of queue
+     * @return {Queue} new instance of Queue with current elements
+     */
     copy() {
-        return [...this.queue];
+        let newQueue = new Queue();
+        for(let i = 0; i < this.length(); i++){
+            newQueue.enqueue(this.queue[i])
+        } 
+        return newQueue;
     }
 }
 

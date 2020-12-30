@@ -5,7 +5,7 @@ import './CreateEncounter.css';
 import Input from '../../components/UI/Input/Input'
 import { createEncounter } from '../../actions/encounter';
 import { CreateEncounterState, Player, EncounterData } from '../../types/EncounterTypes'; 
-import EncounterPage from '../Encounter/EncounterPage';
+import EncounterPage from '../Encounter/Encounter';
 import { Link } from 'react-router-dom'; 
 import EncounterForm from '../../components/EncounterForm/EncounterForm';
 import QueueEntitiesSidebar from '../../components/QueueEntitiesSidebar/QueueEntitiesSidebar';
