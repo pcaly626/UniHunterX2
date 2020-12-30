@@ -12,8 +12,8 @@ class QueuedEntitiesSidebar extends Component {
         return (
                 <div className="QueueEntitiesSidebar" onChange={this.updateMargins}>
                     {
-                        this.props.queue.players.map(player => (
-                            <div  className="row" >
+                        this.props.queue.players.map( ( player, index ) => (
+                            <div key={`${player.name}-${index}`} className="row" >
                                 <div className="Entity">
                                     <div className="row">
                                     
@@ -27,8 +27,8 @@ class QueuedEntitiesSidebar extends Component {
                         ))
                     }
                     {
-                        this.props.queue.enemies.map(enemy => (
-                            <div className="row" >
+                        this.props.queue.enemies.map(( enemy, index ) => (
+                            <div key={`${enemy.name}-${index}`} className="row" >
                                 <div className="Entity">
                                     <div className="row">
                                     

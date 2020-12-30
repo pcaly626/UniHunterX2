@@ -6,29 +6,14 @@ const sidebar = (props : SideBarProps) => {
     return (
         <div className="SideBar">
             {
-            props.enemies.map((enemy, index) => (
+            props.queue.map((combatant, index) => (
                 <div key={index}
                     className="row">
                     <div className="Entity">
                             <div className="QueueItem">
                                 <img className="Portait"
                                     src=""/><p>{
-                                    enemy.name
-                                }</p>
-                        </div>
-                    </div>
-                </div>
-            ))
-        }
-            {
-            props.players.map((player, index) => (
-                <div key={index}
-                    className="row">
-                    <div className="Entity">
-                            <div className="QueueItem">
-                                <img className="Portait"
-                                    src=""/><p>{
-                                    player.name
+                                    combatant.name
                                 }</p>
                         </div>
                     </div>

@@ -15,12 +15,12 @@ const encounterForm = ( props : any ) => {
                 <div className="row">    
                     <div className="col-2"></div>
                     <div className="col-10">
-                        <Input key={props.elements.name} {...props.elements.name} />
+                        <Input key={props.elements.name.label} {...props.elements.name} />
                         <label>{props.elements.player.label}</label>
                         <div className="Stack">
-                            <select className={props.elements.player.css} onChange={props.elements.player.change}>
-                                {props.elements.player.options.map( option => (
-                                    <option key={option.value}{...option}>
+                            <select key={"players"} className={props.elements.player.css} onChange={props.elements.player.change}>
+                                {props.elements.player.options.map( ( option, index ) => (
+                                    <option key={`${option.value}-${index}`}{...option}>
                                         {option.value}
                                     </option>
                                 ))}
@@ -30,9 +30,9 @@ const encounterForm = ( props : any ) => {
                         <br />
                         <label>{props.elements.enemy.label}</label>
                         <div className="Stack">
-                            <select className={props.elements.enemy.css} onChange={props.elements.enemy.change}>
-                                {props.elements.enemy.options.map( option => (
-                                    <option key={option.value}{...option}>
+                            <select key={"enemies"} className={props.elements.enemy.css} onChange={props.elements.enemy.change}>
+                                {props.elements.enemy.options.map( ( option, index ) => (
+                                    <option key={`${option.value}-${index}`}{...option}>
                                         {option.value}
                                     </option>
                                 ))}

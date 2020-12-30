@@ -1,13 +1,11 @@
 .EncounterPage {
     width: 100%;
     height: 800px;
-    background-color: white;
 }
-.EncounterBackArrow {
-    height: 15px;
+.EncounterBackArrow img{
     width: 25px;
     padding: 27px 0px 0px 5px;
-
+    filter: invert(276%) sepia(76%) saturate(2552%) hue-rotate(174deg) brightness(118%) contrast(119%);
 }
 
 .EncounterBackArrow:hover {
@@ -21,10 +19,12 @@
 .EncounterTitle {
     text-transform: capitalize;
     text-align: center;
+    color: white;
 }
 
 .EncounterRound {
     height:80px;
+    width: 100%;
     background-color: rgb(175, 175, 175);
     text-align: center;
 }

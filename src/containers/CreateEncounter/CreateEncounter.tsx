@@ -72,7 +72,7 @@ class CreateEncounter extends Component<{}, CreateEncounterState>{
                     ]
                 },
                 terrain:{
-                    label:"Choose a terrain",
+                    label:"Choose a Terrain",
                     placeHolder:"Example: Swamp",
                     value:"",
                     css:"",
