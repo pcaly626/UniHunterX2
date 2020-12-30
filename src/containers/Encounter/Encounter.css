@@ -1,36 +1,37 @@
+/*Primary page settings*/
 .EncounterPage {
     width: 100%;
     height: 100vh;
     background-image: url(/src/assets/images/parchment_pattern.png);
 }
 
+/*Back arrow settings, top left*/
 .EncounterBackArrow {
     height: 15px;
     width: 25px;
     padding: 27px 0px 0px 5px;
 }
-
 .EncounterBackArrow:hover {
     -webkit-filter: invert(50%);
 }
 
+/*unk*/
 .EncounterHeader {
     background-color: white;
 }
-
 .EncounterTitle {
     text-transform: capitalize;
     text-align: center;
     color: white;
 }
 
+/*Round counter, top center*/
 .EncounterRound {
     height:80px;
     width: 100%;
     background-color: rgb(175, 175, 175);
     text-align: center;
 }
-
 .EncounterRound h4 {
     margin:10px 0 0 0;
 }
@@ -38,12 +39,15 @@
     margin:0;
 }
 
+/*Small button details, above turn box*/
 .EncounterPage button {
-
+    padding: 5px 10px;
 }
+
+/*Important button details, above turn box*/
 .EncounterPage #bigbutton{
-    font-size: 16.5px;
-    padding: 15px 25px;
+    font-size: 18px;
+    padding: 6px 29px;
     color: orange;
     text-decoration: blue;    
 }
@@ -58,3 +62,5 @@
     color: rgb(175, 175, 175);
     background-color: rgb(100, 100, 100);
 }
+
+/**/
