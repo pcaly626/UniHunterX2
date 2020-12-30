@@ -1,3 +1,4 @@
+/* Sidebar window */
 .SideBar{ 
     height:700px;
     width:100%;
@@ -6,14 +7,24 @@
     overflow: scroll;    
 }
 
+/* Character boxes */
 .SideBarItem {
     background-color: grey;
     border-radius:5%;
 }
+.Hold{
 
+}
+
+/* Image posted to character boxes */
 .SideBarItem img {
     padding:10px;
     height: 50px;
     width: 50px;
     border-radius: 62%;
+}
+
+/* Character bar button */
+.SideBarItem button {
+
 }
