@@ -1,11 +1,13 @@
 .EncounterPage {
     width: 100%;
-    height: 800px;
+    height: 100vh;
+    background-image: url(/src/assets/images/parchment_pattern.png);
 }
-.EncounterBackArrow img{
+
+.EncounterBackArrow {
+    height: 15px;
     width: 25px;
     padding: 27px 0px 0px 5px;
-    filter: invert(276%) sepia(76%) saturate(2552%) hue-rotate(174deg) brightness(118%) contrast(119%);
 }
 
 .EncounterBackArrow:hover {
@@ -34,4 +36,25 @@
 }
 .EncounterRound h1 {
     margin:0;
+}
+
+.EncounterPage button {
+
+}
+.EncounterPage #bigbutton{
+    font-size: 16.5px;
+    padding: 15px 25px;
+    color: orange;
+    text-decoration: blue;    
+}
+.EncounterPage #bigbutton:focus{
+    color: rgb(175, 175, 175);
+    background-color: rgb(100, 100, 100);
+}
+.EncounterPage #bigbutton:hover{
+    color: red;
+}
+.EncounterPage #bigbutton:active{
+    color: rgb(175, 175, 175);
+    background-color: rgb(100, 100, 100);
 }

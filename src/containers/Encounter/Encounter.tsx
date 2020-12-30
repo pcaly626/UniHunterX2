@@ -6,31 +6,51 @@ import { EncounterData } from '../../types/EncounterTypes';
 import SideBar from '../../components/Encounter/SideBar/SideBar';
 import Combatant from '../../components/Encounter/Combatant/Combatant';
 import BackArrow from '../../assets/icons/back-arrow.svg';
+import Queue from '../../utilities/queue/Queue';
+
 import './Encounter.css';
 
 
-class EncounterPage extends Component {
+class Encounter extends Component {
 
     state = {
         round: 1,
         currentCombatant: 0,
         players: [],
         enemies: [],
-        queue: []
+        queue: new Queue()
     }
-
 
     rollInitiative(){
         let queue = [...this.state.players, ...this.state.enemies];
+        let newQueue = new Queue();
         queue.forEach( item => { item.initiative = Math.floor(Math.random() * 20) + 1;  });
-        queue.sort((a, b) => (a.initiative < b.initiative) ? 1 : -1 )
-        this.setState({queue: queue})
+        queue.sort((a, b) => (a.initiative < b.initiative) ? 1 : -1 );
+        queue.map( item => newQueue.enqueue(item))
+        this.setState({queue: newQueue})
+    }
+
+    nextRound() {
+        let updateRound = this.state.round;
+        let updateQueue  = this.state.queue;
+        updateQueue.cycleForward();
+        this.setState({round: updateRound + 1})
+    }
+
+    prevRound() {
+        
+        if(this.state.round > 1){
+            let updateRound = Math.max(this.state.round - 1, 1);
+            let updateQueue  = this.state.queue;
+            updateQueue.cycleBack();
+            this.setState({round: updateRound})
+        }
     }
 
     render() {
         this.state.players = this.props.encounter.players
         this.state.enemies = this.props.encounter.enemies
-        
+
         return (
             <div className="EncounterPage">
                 <div className="row">
@@ -56,32 +76,25 @@ class EncounterPage extends Component {
                                             </div>
                                         </div>
                                     </div>
-                                        
+
                                     <div className="col-4"></div>
                                 </div>
                             </div>
                             <div className="col-4"></div>
                         </div>
-                        <div className="row">
-                                        {
-                                            this.state.queue[this.state.currentCombatant] ? 
-                                                <Combatant combatant={this.state.queue[this.state.currentCombatant]} />
-                                                :
-                                                <div></div>
-                                        }
-                                        </div>
+                        {/* <div className="row">the map can go here</div> */}
                     </div>
                     <div className="col-3">
                         <div className="row">
-                            {/* <button>Prev Turn</button>
-                            <button>Turn</button> */}
+                            <button id="bigbutton" onClick={() => this.rollInitiative()}>Roll Initiative</button>
                         </div>
                         <div className="row">
-                            <button onClick={() => this.rollInitiative()}>Roll Initiative</button>
+                            <button onClick={() => this.prevRound()}>Prev Turn</button>
+                            <button onClick={() => this.nextRound()}>Next Turn</button>
                         </div>
                         <div className="row">
                             {
-                                this.props.encounter.enemies ? 
+                                this.props.encounter.enemies ?
                                     <SideBar queue={this.state.queue} />
                                     :
                                     <div></div>
@@ -100,4 +113,4 @@ function mapDispatchToProps(dispatch : Dispatch) {
     return {dispatch, loadEncounter}
 }
 
-export default connect(mapStateToProps, null)(EncounterPage);
+export default connect(mapStateToProps, null)(Encounter);

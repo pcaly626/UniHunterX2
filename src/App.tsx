@@ -3,7 +3,7 @@ import { HashRouter, Switch, Route } from "react-router-dom";
 import { Provider } from 'react-redux';
 import './App.css';
 import CreateEncounter from './containers/CreateEncounter/CreateEncounter';
-import EncounterPage from './containers/Encounter/EncounterPage';
+import EncounterPage from './containers/Encounter/Encounter';
 import store from './store';
 
 class App extends Component {
