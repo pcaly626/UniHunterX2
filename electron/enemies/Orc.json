@@ -1,5 +1,6 @@
 {
     "name": "Orc",
+    "type": "NPC",
     "modifiers": {
         "strength": 16,
         "dexterity": 12,

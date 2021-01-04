@@ -1,5 +1,6 @@
 {
 	"name":"Azrael",
+	"type":"player",
 	"modifiers": {
 		"strength": 14,
 		"dexterity": 15,

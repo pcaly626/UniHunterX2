@@ -1,5 +1,6 @@
 {
 	"name":"Moss",
+	"type":"player",
 	"modifiers": {
 		"strength": 14,
 		"dexterity": 10,

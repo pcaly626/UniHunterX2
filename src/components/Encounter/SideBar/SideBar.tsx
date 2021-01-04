@@ -2,6 +2,8 @@ import React from 'react';
 import './SideBar.css';
 import {SideBarProps} from '../../../types/SideBarTypes';
 import Portait from '../../../assets/portaits/rasgrim.png';
+import ActionModal from '../ActionModal/ActionModal';
+import BackDrop from '../../UI/BackDrop/BackDrop';
 const sidebar = (props : SideBarProps) => {
     return (
         <div className="SideBar">
@@ -25,7 +27,7 @@ const sidebar = (props : SideBarProps) => {
                                     </div>
                                 </div>
                                 <div className="row">
-                                    <button>action</button>
+                                    <button onClick={() => props.openModal()}>action</button>
                                     <button>hold</button>
                                 </div>
                                 <div className="row">

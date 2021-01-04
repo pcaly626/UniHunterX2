@@ -1,0 +1,18 @@
+.BackDrop {
+    display: block;
+}
+
+.BackDropOpen {
+    position:fixed;
+    z-index: 1000;
+    top:0;
+    width:100%;
+    height:100%;
+    background-color: darkgrey;
+    opacity: 70%;
+}
+
+.BackDropClose {
+    display: none;
+}
+

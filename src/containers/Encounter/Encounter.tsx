@@ -4,7 +4,8 @@ import { Dispatch } from 'redux';
 import { loadEncounter } from '../../actions/encounter';
 import { EncounterData } from '../../types/EncounterTypes';
 import SideBar from '../../components/Encounter/SideBar/SideBar';
-import Combatant from '../../components/Encounter/Combatant/Combatant';
+import ActionModal from '../../components/Encounter/ActionModal/ActionModal';
+import BackDrop from '../../components/UI/BackDrop/BackDrop';
 import BackArrow from '../../assets/icons/back-arrow.svg';
 import Queue from '../../utilities/queue/Queue';
 
@@ -18,7 +19,13 @@ class Encounter extends Component {
         currentCombatant: 0,
         players: [],
         enemies: [],
-        queue: new Queue()
+        queue: new Queue(),
+        openModal: false
+    }
+
+    openActionModal() {
+        let showOrHide = !this.state.openModal;
+        this.setState({openModal: showOrHide})
     }
 
     rollInitiative(){
@@ -52,56 +59,58 @@ class Encounter extends Component {
         this.state.enemies = this.props.encounter.enemies
 
         return (
-            <div className="EncounterPage">
-                <div className="row">
-                    <div className="col-1 EncounterBackArrow">
-                            <img onClick={
-                            () => {
-                                this.props.history.push("/")
-                            }
-                        } src={BackArrow} />
-                    </div>
-                    <div className="col-8">
-                        <div className="row">
-                            <div className="col-4"></div>
-                            <div className="col-4">
-                                <h1 className="EncounterTitle"> {this.props.encounter.name}</h1>
-                                <div className="row">
-                                    <div className="col-4"></div>
-                                    <div className="col-4 ">
-                                        <div className="row">
-                                            <div className="EncounterRound w-100">
-                                                <h4>Round</h4>
-                                            <h1>{ this.state.round }</h1>
+                <div className="EncounterPage">
+                    <ActionModal show={this.state.openModal} hide={() => this.openActionModal()} combatant={this.state.queue.peek()} />
+                    <BackDrop open={this.state.openModal} />
+                    <div className="row">
+                        <div className="col-1 EncounterBackArrow">
+                                <img onClick={
+                                () => {
+                                    this.props.history.push("/")
+                                }
+                            } src={BackArrow} />
+                        </div>
+                        <div className="col-8">
+                            <div className="row">
+                                <div className="col-4"></div>
+                                <div className="col-4">
+                                    <h1 className="EncounterTitle"> {this.props.encounter.name}</h1>
+                                    <div className="row">
+                                        <div className="col-4"></div>
+                                        <div className="col-4 ">
+                                            <div className="row">
+                                                <div className="EncounterRound w-100">
+                                                    <h4>Round</h4>
+                                                <h1>{ this.state.round }</h1>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
 
-                                    <div className="col-4"></div>
+                                        <div className="col-4"></div>
+                                    </div>
                                 </div>
+                                <div className="col-4"></div>
                             </div>
-                            <div className="col-4"></div>
+                            {/* <div className="row">the map can go here</div> */}
                         </div>
-                        {/* <div className="row">the map can go here</div> */}
+                        <div className="col-3">
+                            <div className="row">
+                                <button id="bigbutton" onClick={() => this.rollInitiative()}>Roll Initiative</button>
+                            </div>
+                            <div className="row">
+                                <button onClick={() => this.prevRound()}>Prev Turn</button>
+                                <button onClick={() => this.nextRound()}>Next Turn</button>
+                            </div>
+                            <div className="row">
+                                {
+                                    this.props.encounter.enemies ?
+                                        <SideBar queue={this.state.queue} openModal={() => this.openActionModal()} open={this.state.openModal}/>
+                                        :
+                                        <div></div>
+                                }
+                            </div>
+                        </div>
                     </div>
-                    <div className="col-3">
-                        <div className="row">
-                            <button id="bigbutton" onClick={() => this.rollInitiative()}>Roll Initiative</button>
-                        </div>
-                        <div className="row">
-                            <button onClick={() => this.prevRound()}>Prev Turn</button>
-                            <button onClick={() => this.nextRound()}>Next Turn</button>
-                        </div>
-                        <div className="row">
-                            {
-                                this.props.encounter.enemies ?
-                                    <SideBar queue={this.state.queue} />
-                                    :
-                                    <div></div>
-                            }
-                        </div>
-                    </div>
-                </div>
             </div>
         )
     }
