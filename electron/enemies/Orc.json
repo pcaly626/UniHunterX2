@@ -15,7 +15,7 @@
     "size": "medium",
     "attacks": [
         {
-            "actions": [
+            "weapons": [
                 {
                     "name": "great axe",
                     "dice": {
@@ -37,7 +37,9 @@
                     "hand": 1,
                     "range": 30
                 }
-            ]
+            ],
+            "spells": [
+			]
         }
     ],
     "traits": [

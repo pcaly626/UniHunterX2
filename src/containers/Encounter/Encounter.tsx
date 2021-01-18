@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import { loadEncounter } from '../../actions/encounter';
-import { EncounterData } from '../../types/EncounterTypes';
+import { EncounterData, Enemy, Player } from '../../types/EncounterTypes';
 import SideBar from '../../components/Encounter/SideBar/SideBar';
 import ActionModal from '../../components/Encounter/ActionModal/ActionModal';
 import BackDrop from '../../components/UI/BackDrop/BackDrop';
@@ -60,7 +60,12 @@ class Encounter extends Component {
 
         return (
                 <div className="EncounterPage">
-                    <ActionModal show={this.state.openModal} hide={() => this.openActionModal()} combatant={this.state.queue.peek()} />
+                    <ActionModal 
+                        show={this.state.openModal} 
+                        hide={() => this.openActionModal()} 
+                        combatant={this.state.queue.peek()} 
+                        combatants={this.state.queue.getQueue()} 
+                    />
                     <BackDrop open={this.state.openModal} />
                     <div className="row">
                         <div className="col-1 EncounterBackArrow">

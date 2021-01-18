@@ -25,6 +25,8 @@
     font-size: 25px;
 }
 
-.ActionModalCombatant {
-    font-size: 20px;
+.ActionModalHeader {
+    display: flex;
+    align-contents: stretch;
+    align-items: stretch;
 }

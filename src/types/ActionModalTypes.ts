@@ -1,7 +1,10 @@
 import { Enemy, Player } from './EncounterTypes';
+import Queue from '../utilities/queue/Queue';
 
-export interface ActionModalProps{
+export interface ActionModalProps {
     combatant? : Enemy | Player,
-    open?: Boolean
-    hide: Function
+    combatants : Queue,
+    open?: Boolean,
+    hide: Function,
+    roll: Function
 }
