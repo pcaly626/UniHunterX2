@@ -35,6 +35,9 @@ class Queue {
         return !this.isEmpty() ? this.queue[0] : undefined;
     }
 
+    map() {
+        
+    }
 
     /**
      * Check if queue is empty

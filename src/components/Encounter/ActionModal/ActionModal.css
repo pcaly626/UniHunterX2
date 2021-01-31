@@ -1,0 +1,32 @@
+.ActionModal {
+    display:block;
+}
+
+.ActionModalOpen {
+    position: fixed;
+    margin: 5% 25%;
+    z-index: 1001;
+    width: 50%;
+    height: 75%;
+    background-color: whitesmoke;
+}
+
+.ActionModalClose {
+    display:none;
+}
+
+.ActionModalCombatant {
+    display: block;
+    margin: 5%;
+}
+
+.ActionModalCombatant .Name {
+    margin-left: 50%;
+    font-size: 25px;
+}
+
+.ActionModalHeader {
+    display: flex;
+    align-contents: stretch;
+    align-items: stretch;
+}

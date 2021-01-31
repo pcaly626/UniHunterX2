@@ -28,6 +28,7 @@ export interface Spell {
 
 export interface Enemy {
     name: string,
+    type: string,
     modifiers: {
         strength: number,
         dexterity: number,
@@ -54,6 +55,7 @@ export interface Enemy {
 
 export interface Player {
     name: string,
+    type: string,
     modifiers: {
         strength: number,
         dexterity: number,
