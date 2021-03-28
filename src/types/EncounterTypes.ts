@@ -22,8 +22,24 @@ export interface Weapon {
 }
 
 export interface Spell {
-    level: number,
-    slots: number
+    name:string,
+    level:number,
+    school:string,
+    castingTime:number,
+    range: number,
+    target: string,
+    components?: string,
+    concentration: boolean,
+    duration: number,
+    description: string,
+    higherLevel: string,
+    dice: {
+        type:number,
+        amount: number,
+        modifier: number
+    },
+    damageType?: string
+
 }
 
 export interface Enemy {
@@ -70,10 +86,18 @@ export interface Player {
     armorClass: number,
     playerClass: string,
     playerRace: string,
-    attacks: Array < {
+    spellAttackBonus?: number,
+    spellSaveDC?: number,
+    spellCastingAbility?:string,
+    slots?:Array< {
+        level: number,
+        avalible: number,
+        used: number
+    } >,
+    attacks:  {
         weapons: Array < Weapon >,
         spells: Array < Spell >
-    } >,
+    },
     deathSaves: {
         success: number,
         failure: number

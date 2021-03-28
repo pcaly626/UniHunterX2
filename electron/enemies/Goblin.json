@@ -14,8 +14,7 @@
     "level": 4,
     "armorClass": 15,
     "size": "small",
-    "attacks": [
-        {
+    "attacks": {
             "weapons": [
                 {
                     "name": "scimitar",
@@ -42,7 +41,7 @@
             "spells": [
 			]
         }
-    ],
+    ,
     "traits": [
         {
             "name": "nimble escape",
