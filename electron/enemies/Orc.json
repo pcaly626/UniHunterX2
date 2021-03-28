@@ -13,7 +13,7 @@
     "health": 15,
     "armorClass": 13,
     "size": "medium",
-    "attacks": [
+    "attacks": 
         {
             "weapons": [
                 {
@@ -38,10 +38,9 @@
                     "range": 30
                 }
             ],
-            "spells": [
-			]
+            "spells": []
         }
-    ],
+    ,
     "traits": [
         {
             "name": "nimble escape",

@@ -1,6 +1,6 @@
 {
-	"name":"Oskar",
-	"type":"player",
+	"name": "Rasgrim",
+	"type": "player",
 	"modifiers": {
 		"strength": 14,
 		"dexterity": 10,
@@ -16,6 +16,26 @@
 	"initiativeMod": 0,
 	"playerClass": "cleric",
 	"playerRace": "gnome",
+	"spellAttackBonus": 6,
+	"spellSaveDC": 14,
+	"spellCastingAbility": "wisdom",
+	"slots": [
+		{
+			"level": 0,
+			"avalible": 4,
+			"used": 0
+		},
+		{
+			"level": 1,
+			"avalible": 4,
+			"used": 0
+		},
+		{
+			"level": 2,
+			"avalible": 2,
+			"used": 0
+		}
+	],
 	"features": [
 		{
 			"warPriest": {
@@ -26,7 +46,7 @@
 			}
 		}
 	],
-	"attacks": [
+	"attacks":
 		{
 			"weapons": [
 				{
@@ -38,7 +58,7 @@
 					},
 					"type": "bludgeon",
 					"hand": 1,
-					"range":5
+					"range": 5
 				},
 				{
 					"name": "warHammer",
@@ -49,7 +69,7 @@
 					},
 					"type": "bludgeon",
 					"hand": 2,
-					"range":5
+					"range": 5
 				},
 				{
 					"name": "handAxe",
@@ -60,7 +80,7 @@
 					},
 					"type": "slashing",
 					"hand": 1,
-					"range":30
+					"range": 30
 				},
 				{
 					"name": "halberd",
@@ -71,21 +91,88 @@
 					},
 					"type": "piercing",
 					"hand": 2,
-					"range":10
+					"range": 10
 				}
 			],
 			"spells": [
 				{
-					"level": 1,
-					"slots": 4
+					"name": "Sacred Flame",
+					"level": 0,
+					"school": "Abjuration",
+					"castingTime": 1,
+					"range": 60,
+					"target": "",
+					"components": "",
+					"concentration": false,
+					"duration": 0,
+					"description": "Flame-like radiance descends on a creature that you can see within range. The target must succeed on a Dexterity saving throw or take 1d8 radiant damage. The target gains no benefit from cover for this saving throw. The spell's damage increases by 1d8 when you reach 5th level (2d8),11th level (3d8), and 17th level (4d8)",
+					"higherLevel": "",
+					"dice": {
+						"type": 8,
+						"amount": 1,
+						"modifier": 6
+					},
+					"damageType": "radiant"
 				},
 				{
-					"level": 2,
-					"slots": 2
+					"name": "Guidance",
+					"level": 0,
+					"school": "Divination",
+					"castingTime": 1,
+					"range": 0,
+					"target": "",
+					"components": "",
+					"concentration": true,
+					"duration": 60,
+					"description": "You touch one willing creature. Once before the spell ends, the target can roll a d4 and add the number rolled to one ability check of its choice. It can roll the die before or after making the ability check. The spell then ends.",
+					"higherLevel": "",
+					"dice": {
+						"type": 4,
+						"amount": 1,
+						"modifier": 6
+					},
+					"damageType": ""
+				},
+				{
+					"name": "Spare The Dying",
+					"level": 0,
+					"school": "Necromancy",
+					"castingTime": 1,
+					"range": 0,
+					"target": "",
+					"components": "",
+					"concentration": false,
+					"duration": 0,
+					"description": "You touch a living creature that has 0 hit points. The creature becomes stable. This spell has no effect on undead or constructs.",
+					"higherLevel": "",
+					"dice": {
+						"type": 0,
+						"amount": 0,
+						"modifier": 6
+					},
+					"damageType": ""
+				},
+				{
+					"name": "Mending",
+					"level": 0,
+					"school": "Transmutation",
+					"castingTime": 1,
+					"range": 0,
+					"target": "",
+					"components": "",
+					"concentration": true,
+					"duration": 60,
+					"description": "This spell repairs a single break or tear in an object you touch, such as a broken chain link, two halves of a broken key, a torn cloak, or a leaking wineskin. As long as the break or tear is no larger than 1 foot in any dimension, you mend it, leaving no trace of the former damage.This spell can physically repair a magic item or construct, but the spell can't restore magic to such an object.",
+					"higherLevel": "",
+					"dice": {
+						"type": 0,
+						"amount": 0,
+						"modifier": 6
+					},
+					"damageType": ""
 				}
 			]
-		}
-	],
+		},
 	"deathSaves": {
 		"success": 0,
 		"failure": 0

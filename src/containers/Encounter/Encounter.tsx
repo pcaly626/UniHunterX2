@@ -8,6 +8,7 @@ import ActionModal from '../../components/Encounter/ActionModal/ActionModal';
 import BackDrop from '../../components/UI/BackDrop/BackDrop';
 import BackArrow from '../../assets/icons/back-arrow.svg';
 import Queue from '../../utilities/queue/Queue';
+import EncounterMap from '../../components/Encounter/EncounterMap/EncounterMap';
 
 import './Encounter.css';
 
@@ -16,6 +17,7 @@ class Encounter extends Component {
 
     state = {
         round: 1,
+        turn: 1,
         currentCombatant: 0,
         players: [],
         enemies: [],
@@ -39,18 +41,23 @@ class Encounter extends Component {
 
     nextRound() {
         let updateRound = this.state.round;
+        let updateTurn = this.state.turn + 1;
         let updateQueue  = this.state.queue;
         updateQueue.cycleForward();
-        this.setState({round: updateRound + 1})
+        updateRound = updateTurn / this.state.queue.length();
+        this.setState({turn: updateTurn})
+        this.setState({round: updateRound.toFixed(0)})
     }
 
     prevRound() {
         
         if(this.state.round > 1){
-            let updateRound = Math.max(this.state.round - 1, 1);
+            let updateTurn = Math.max(this.state.turn - 1, 1);
+            let updateRound = Math.max(updateTurn / this.state.queue.length(), 1);
             let updateQueue  = this.state.queue;
             updateQueue.cycleBack();
-            this.setState({round: updateRound})
+            this.setState({turn: updateTurn})
+            this.setState({round: updateRound.toFixed(0)})
         }
     }
 
@@ -96,7 +103,6 @@ class Encounter extends Component {
                                 </div>
                                 <div className="col-4"></div>
                             </div>
-                            {/* <div className="row">the map can go here</div> */}
                         </div>
                         <div className="col-3">
                             <div className="row">
