@@ -103,9 +103,6 @@ class Encounter extends Component {
                                 </div>
                                 <div className="col-4"></div>
                             </div>
-                            <div className="row">
-                                <EncounterMap />
-                            </div>
                         </div>
                         <div className="col-3">
                             <div className="row">
