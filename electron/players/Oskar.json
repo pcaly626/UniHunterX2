@@ -1,48 +1,45 @@
 {
-	"name": "Rasgrim",
+	"name": "Rogue",
 	"type": "player",
 	"modifiers": {
-		"strength": 14,
-		"dexterity": 10,
-		"constitution": 16,
-		"intelligence": 12,
-		"wisdom": 16,
-		"charisma": 8,
-		"proficiency": 1
+		"str": 14,
+		"dex": 16,
+		"con": 10,
+		"int": 10,
+		"wis": 10,
+		"cha": 14,
+		"prof": 3
 	},
 	"health": 35,
 	"level": 4,
-	"armorClass": 18,
+	"armorClass": 16,
 	"initiativeMod": 0,
-	"playerClass": "cleric",
-	"playerRace": "gnome",
-	"spellAttackBonus": 6,
-	"spellSaveDC": 14,
-	"spellCastingAbility": "wisdom",
+	"playerClass": "rogue",
+	"playerRace": "elf",
+	"spellAttackBonus": 0,
+	"spellSaveDC": 0,
+	"spellCastingAbility": "charisma",
 	"slots": [
 		{
 			"level": 0,
-			"avalible": 4,
+			"avalible": 0,
 			"used": 0
 		},
 		{
 			"level": 1,
-			"avalible": 4,
+			"avalible": 0,
 			"used": 0
 		},
 		{
 			"level": 2,
-			"avalible": 2,
+			"avalible": 0,
 			"used": 0
 		}
 	],
 	"features": [
 		{
-			"warPriest": {
-				"description": "Your god delivers bolts of inspiration to you while you are engaged in battle. When you use the attack action, you can make one weapon attack as a bonus action. You may do this once for each Wisdom modifier point you have and regain uses on a long rest."
-			},
-			"guidedStrike": {
-				"description": ""
+			"Backstab": {
+				"description": "Extra damage under certain circumstances"
 			}
 		}
 	],
@@ -50,126 +47,50 @@
 		{
 			"weapons": [
 				{
-					"name": "warHammer",
+					"name": "Dagger",
+					"dice": {
+						"type": 4,
+						"amount": 1,
+						"modifier": 0
+					},
+					"type": "pierce",
+					"hand": 1,
+					"range": 5
+				},
+				{
+					"name": "Rapier",
 					"dice": {
 						"type": 8,
 						"amount": 1,
 						"modifier": 0
 					},
-					"type": "bludgeon",
-					"hand": 1,
-					"range": 5
-				},
-				{
-					"name": "warHammer",
-					"dice": {
-						"type": 10,
-						"amount": 1,
-						"modifier": 0
-					},
-					"type": "bludgeon",
+					"type": "pierce",
 					"hand": 2,
 					"range": 5
-				},
-				{
-					"name": "handAxe",
-					"dice": {
-						"type": 6,
-						"amount": 1,
-						"modifier": 0
-					},
-					"type": "slashing",
-					"hand": 1,
-					"range": 30
-				},
-				{
-					"name": "halberd",
-					"dice": {
-						"type": 10,
-						"amount": 1,
-						"modifier": 0
-					},
-					"type": "piercing",
-					"hand": 2,
-					"range": 10
 				}
 			],
 			"spells": [
 				{
-					"name": "Sacred Flame",
+					"name": "Backstab",
+					"type": "attack",
 					"level": 0,
-					"school": "Abjuration",
+					"school": "physical",
 					"castingTime": 1,
 					"range": 60,
-					"target": "",
+					"target": 1,
 					"components": "",
 					"concentration": false,
 					"duration": 0,
-					"description": "Flame-like radiance descends on a creature that you can see within range. The target must succeed on a Dexterity saving throw or take 1d8 radiant damage. The target gains no benefit from cover for this saving throw. The spell's damage increases by 1d8 when you reach 5th level (2d8),11th level (3d8), and 17th level (4d8)",
+					"attackroll": false,
+					"save": null,
+					"description": "You backstab for extra damage when you have an enemy surrounded, you take their turn before theirs, and/or you are hidden from their sight.",
 					"higherLevel": "",
 					"dice": {
-						"type": 8,
+						"type": 6,
 						"amount": 1,
-						"modifier": 6
+						"modifier": 3
 					},
-					"damageType": "radiant"
-				},
-				{
-					"name": "Guidance",
-					"level": 0,
-					"school": "Divination",
-					"castingTime": 1,
-					"range": 0,
-					"target": "",
-					"components": "",
-					"concentration": true,
-					"duration": 60,
-					"description": "You touch one willing creature. Once before the spell ends, the target can roll a d4 and add the number rolled to one ability check of its choice. It can roll the die before or after making the ability check. The spell then ends.",
-					"higherLevel": "",
-					"dice": {
-						"type": 4,
-						"amount": 1,
-						"modifier": 6
-					},
-					"damageType": ""
-				},
-				{
-					"name": "Spare The Dying",
-					"level": 0,
-					"school": "Necromancy",
-					"castingTime": 1,
-					"range": 0,
-					"target": "",
-					"components": "",
-					"concentration": false,
-					"duration": 0,
-					"description": "You touch a living creature that has 0 hit points. The creature becomes stable. This spell has no effect on undead or constructs.",
-					"higherLevel": "",
-					"dice": {
-						"type": 0,
-						"amount": 0,
-						"modifier": 6
-					},
-					"damageType": ""
-				},
-				{
-					"name": "Mending",
-					"level": 0,
-					"school": "Transmutation",
-					"castingTime": 1,
-					"range": 0,
-					"target": "",
-					"components": "",
-					"concentration": true,
-					"duration": 60,
-					"description": "This spell repairs a single break or tear in an object you touch, such as a broken chain link, two halves of a broken key, a torn cloak, or a leaking wineskin. As long as the break or tear is no larger than 1 foot in any dimension, you mend it, leaving no trace of the former damage.This spell can physically repair a magic item or construct, but the spell can't restore magic to such an object.",
-					"higherLevel": "",
-					"dice": {
-						"type": 0,
-						"amount": 0,
-						"modifier": 6
-					},
-					"damageType": ""
+					"damageType": "physical"
 				}
 			]
 		},
